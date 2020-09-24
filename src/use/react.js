@@ -1,4 +1,4 @@
-import { ref, reactive } from "vue";
+import { ref, reactive, watch } from "vue";
 
 const useStateObject = entryObj => {
     const obj = reactive(entryObj);
@@ -12,7 +12,7 @@ const useStateObject = entryObj => {
     return [obj, set];
 }
 
-export const useState = entryValue => {
+const useState = entryValue => {
     if (typeof entryValue === "object") {
         return useStateObject(entryValue);
     }
@@ -24,6 +24,15 @@ export const useState = entryValue => {
     return [state, set];
 };
 
+const useEffect = (effectHandler, dependencies) => {
+    return watch(dependencies, (changedDependencies, prevDependencies, onCleanUp) => {
+        const effectCleaner = effectHandler(changedDependencies, prevDependencies);
+        if (typeof effectCleaner === "function") {
+            onCleanUp(effectCleaner);
+        }
+    }, { immediate: true, deep: true });
+}
+
 export const useReact = () => {
-    return { useState }
+    return { useState, useEffect }
 }
