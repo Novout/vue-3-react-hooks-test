@@ -4,7 +4,6 @@ const useStateObject = entryObj => {
     const obj = reactive(entryObj);
     const set = valueObj => {
         Object.entries(valueObj).forEach(([key, val]) => {
-            // @ts-ignore
             obj[key] = val;
         });
     };
