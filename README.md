@@ -1,6 +1,6 @@
 # Vue 3 React Hooks Example
 
-React hooks with Vue 3 API Composition
+Syntax React hooks with Vue 3 API Composition
 
 ## Use Hooks
 
