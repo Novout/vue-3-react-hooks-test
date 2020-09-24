@@ -1,26 +1,18 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <p @click.prevent="setCount(++count)">{{ count }}</p>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { useReact } from "@/use/react.js";
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  setup() {
+    const { useState } = useReact();
+
+    const [count, setCount] = useState(0);
+
+    return { count, setCount }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
