@@ -1,24 +1,46 @@
-# vue-react-hooks-example
+# Vue 3 React Hooks Example
 
-## Project setup
-```
-yarn install
-```
+React hooks with Vue 3 API Composition
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+## Use Hooks
 
-### Compiles and minifies for production
-```
-yarn build
+```js
+import { useReact } from "@/use/react.js";
+
+const { useState, useEffect } = useReact();
 ```
 
-### Lints and fixes files
-```
-yarn lint
-```
+## State
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+```js
+import { useReact } from "@/use/react.js";
+
+export default {
+  setup() {
+    const { useState } = useReact();
+
+    const [id, setId] = useState(0);
+
+    return { id, setId };
+  }
+}
+```
+## Effect(Watch)
+
+```js
+import { useReact } from "@/use/react.js";
+
+export default {
+  setup() {
+    const { useState, useEffect } = useReact();
+
+    const [id, setId] = useState(0);
+    
+    useEffect(([nextId], [prevId]) => {
+      console.log({ id: nextId });
+    }, [id]);
+
+    return { id, setId };
+  }
+}
+```
